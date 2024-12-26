@@ -29,7 +29,8 @@ async def update_todo(id:str,todo:Todo):
     collection_name.find_one_and_update({"_id":ObjectId(id)},{
         "$set":dict(todo)
     })
-    todo = collection_name.find({"_id":ObjectId(id)})
+    return todos_serializer(collection_name.find({"_id": ObjectId(id)}))
+
 
 # Delete
 @todo_api_router.delete("/{id}")
